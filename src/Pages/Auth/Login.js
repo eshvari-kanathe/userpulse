@@ -34,10 +34,11 @@ export default function Login() {
     } else {
       navigate("/")
     }
-  }, [token, loginData]);
+  }, [token, loginData])
+
 
   const onSuccess = (credentialResponse) => {
-    console.log(credentialResponse);
+    // console.log(credentialResponse);
     const credential = {
       idToken: credentialResponse.credential
     }
@@ -90,7 +91,7 @@ export default function Login() {
             <Link to="/forgotpassword" className='forgot-link'>Forgot password</Link>
             <button type='submit' className='login-btn' disabled={isSubmitting}>Login</button>
 
-            <p style={{ display: "flex", justifyContent: "center", fontWeight:700}}>or</p>
+            <p style={{ display: "flex", justifyContent: "center", fontWeight: 700 }}>or</p>
 
             <div className='google-login'>
               <GoogleLogin

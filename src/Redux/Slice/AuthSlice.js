@@ -11,7 +11,7 @@ const initialState = {
   emailVerificationSuccess: false,
   isErrorMessage: "",
   signupData: {}
-};
+}
 
 const loginSlice = createSlice({
   name: "auth",
@@ -27,7 +27,7 @@ const loginSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isSuccess = true
+        state.isSuccess = true;
         state.isError = false;
         state.loginData = action.payload;
         state.token = action.payload?.token
@@ -57,7 +57,7 @@ const loginSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
-        state.isErrorMessage = action.payload || "registration failed r"
+        state.isErrorMessage = action.payload || "registration failed"
       })
 
       .addCase(verifyEmail.pending, (state, action) => {
