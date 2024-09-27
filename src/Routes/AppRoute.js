@@ -10,43 +10,37 @@ import ResetPassword from "../Pages/Auth/ResetPassword";
 import PageNotFound from "../Components/System/PageNotFound";
 
 const AppRoute = () => {
-    const userToken = localStorage.getItem("token")
-    const navigate = useNavigate()
+    const userToken = localStorage.getItem("token");
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        if (!userToken) {
-            navigate("/")
-        }
-    }, [userToken])
+    // useEffect(() => {
+    //     if (!userToken) {
+    //         navigate("/"); 
+    //     }
+    // }, [userToken, navigate]);
 
     return (
         <>
-            {!userToken ?
-                <div>
-                    <Routes>
-                        <Route path="/" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/auth/reset-password/:id/:token" element={<ResetPassword />} />
-                        <Route path="/forgotpassword" element={<ForgotPassword />} />
-                        <Route path="*" element={<PageNotFound />} />
+            <Routes>
 
-                    </Routes>
-                </div>
-                :
-                <div>
-                    <div>
-                        <Routes>
-                            <Route path="/dashboard" element={<PrivateRoutes Component={UserList} />} />
-                            <Route path="/form" element={<PrivateRoutes Component={UpdateUser} />} />
-                            <Route path="*" element={<PageNotFound />} />
-                        </Routes>
-                    </div>
-                </div>
+                <Route path="/" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/forgotpassword" element={<ForgotPassword />} />
+                <Route path="/auth/reset-password/:id/:token" element={<ResetPassword />} />
+                {/* <Route path="*" element={<Login />} /> */}
 
-            }
+                {/* <Route path="/dashboard" element={userToken ? <PrivateRoutes Component={UserList} /> : <Login />} />
+                <Route path="/form" element={userToken ? <PrivateRoutes Component={UpdateUser} /> : <Login />} /> */}
+
+                <Route path="/dashboard" element={<PrivateRoutes Component={UserList} /> } />
+                <Route path="/form" element={<PrivateRoutes Component={UpdateUser} /> } />
+
+
+                <Route path="*" element={<PageNotFound />} />
+                
+            </Routes>
         </>
-    );
-};
+    )
+}
 
 export default AppRoute;
-

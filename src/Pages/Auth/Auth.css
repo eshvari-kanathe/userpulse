@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 100vh;
   background-color: #94bbe9;
   /* background: url('/src/Assets/Images/login-background.jpg');
   background-repeat: no-repeat;
@@ -29,7 +29,7 @@ h2 {
 }
 
 .form-field {
-  margin-bottom: 15px;
+  margin-bottom: 15px
 }
 
 label {

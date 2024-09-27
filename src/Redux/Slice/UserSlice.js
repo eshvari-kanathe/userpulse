@@ -146,15 +146,15 @@ export const updateUser = createAsyncThunk(
                     "Authorization": "Bearer " + localStorage.getItem("token")
                 }
             })
-            toast.success("Verify email successfully", {
+            toast.success("Update user successfully", {
                 position: "top-right",
-              });
+            });
             // console.log(response, "update user successfully")
             return response.data.data
         } catch (error) {
             toast.error("Failed", {
                 position: "top-right"
-              });
+            });
             console.log("failed to update", error)
         }
     }

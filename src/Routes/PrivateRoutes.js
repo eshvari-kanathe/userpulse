@@ -20,3 +20,4 @@ const PrivateRoutes = ({ Component }) => {
 }
 
 export default PrivateRoutes
+

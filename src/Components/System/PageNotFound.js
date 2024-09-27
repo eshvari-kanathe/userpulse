@@ -3,14 +3,12 @@ import { Box, Button } from "@mui/material";
 import { useNavigate } from "react-router";
 import './SystemStyle.css'
 
-const PageNotFound = () => {
+export default function PageNotFound () {
     const navigate = useNavigate()
 
     const handleNavigate = () => {
         navigate('/')
     }
-
-
     return (
         <Box className="page-not-found">
             <Box>
@@ -22,14 +20,10 @@ const PageNotFound = () => {
                     sx={{ mt: 4 }}
                     onClick={handleNavigate}
                 >
-                    Go to Login
-                    
+                    Go to Login      
                 </Button>
             </Box>
         </Box>
     )
 }
-
-export default PageNotFound
-
 

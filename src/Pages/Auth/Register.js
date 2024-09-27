@@ -35,7 +35,6 @@ export default function RegisterPage() {
         }
         // console.log(verification, "verify email")
         dispatch(verifyEmail(verification))
-        // alert("Email verify successfully")
         // console.log(verification,"verification data")
     }
 
@@ -55,7 +54,6 @@ export default function RegisterPage() {
                     validationSchema={RegisterSchema}
                     onSubmit={(values) => {
                         dispatch(registerUser(values))
-                        // alert("User register successfully")
 
                     }}
                 >
