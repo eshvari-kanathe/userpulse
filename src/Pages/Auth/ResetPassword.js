@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { resetPassword } from '../../Redux/Slice/AuthSlice';
 
-function ResetPassword() {
+export default function ResetPassword() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const { token, id } = useParams()
@@ -50,8 +50,4 @@ function ResetPassword() {
         </div>
     );
 }
-
-export default ResetPassword;
-
-
 

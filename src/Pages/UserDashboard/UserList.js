@@ -12,24 +12,19 @@ export default function Dashboard() {
   const dispatch = useDispatch()
 
   const { userList } = useSelector((state) => state.user);
-  const token = localStorage.getItem("token")
-  // console.log("userList", userList)
+
+  console.log("userList", userList)
 
   useEffect(() => {
-    if (token) {
-      dispatch(getAllUser())
-      navigate("/dashboard")
-
-    } else {
-      navigate("/")
-    }
-  }, [token]);
+    dispatch(getAllUser())
+  }, []);
 
 
   const handleLogOut = () => {
     localStorage.clear()
-    window.location.reload()
     navigate('/');
+    window.location.reload()
+   
   };
 
   const handleDelete = (id) => {

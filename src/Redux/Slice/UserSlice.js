@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const initialState = {
     userList: [],
@@ -145,9 +146,15 @@ export const updateUser = createAsyncThunk(
                     "Authorization": "Bearer " + localStorage.getItem("token")
                 }
             })
+            toast.success("Verify email successfully", {
+                position: "top-right",
+              });
             // console.log(response, "update user successfully")
             return response.data.data
         } catch (error) {
+            toast.error("Failed", {
+                position: "top-right"
+              });
             console.log("failed to update", error)
         }
     }

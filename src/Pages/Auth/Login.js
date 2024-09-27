@@ -34,7 +34,7 @@ export default function Login() {
     } else {
       navigate("/")
     }
-  }, [token, loginData])
+  }, [token])
 
 
   const onSuccess = (credentialResponse) => {
@@ -61,6 +61,7 @@ export default function Login() {
           setLoading(true)
           dispatch(loginUser(values));
           setSubmitting(false);
+
         }}
       >
         {({ handleChange, handleSubmit, isSubmitting }) => (
@@ -85,7 +86,6 @@ export default function Login() {
                 onChange={handleChange}
               />
               <ErrorMessage name="password" component="div" className="error-message" />
-
             </div>
 
             <Link to="/forgotpassword" className='forgot-link'>Forgot password</Link>

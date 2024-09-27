@@ -5,7 +5,7 @@ import { updateUser } from "../../Redux/Slice/UserSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-export default function Form() {
+function UpdateUser() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -28,7 +28,7 @@ export default function Form() {
             email: edit.userData?.email,
         })
     }, [edit.isEdit])
-   
+
 
     const saveData = (e) => {
         e.preventDefault()
@@ -43,6 +43,7 @@ export default function Form() {
     }
 
     return <>
+        <h1 style={{display:"flex", justifyContent:"center",marginTop:40}}>Update User</h1>
         <form className="centered-form" onSubmit={saveData}>
             <div>
                 <label>Name</label>
@@ -62,3 +63,4 @@ export default function Form() {
         </form>
     </>
 }
+export default UpdateUser;

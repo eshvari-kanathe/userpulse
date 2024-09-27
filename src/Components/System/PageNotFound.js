@@ -7,7 +7,7 @@ const PageNotFound = () => {
     const navigate = useNavigate()
 
     const handleNavigate = () => {
-        navigate('/dashboard')
+        navigate('/')
     }
 
 
@@ -31,3 +31,5 @@ const PageNotFound = () => {
 }
 
 export default PageNotFound
+
+

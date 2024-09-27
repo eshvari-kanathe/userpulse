@@ -25,6 +25,7 @@ const loginSlice = createSlice({
         state.isError = false;
         state.isErrorMessage = "";
       })
+
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
@@ -35,8 +36,8 @@ const loginSlice = createSlice({
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
-        state.isSuccess = false
-        state.isError = true;
+        state.isSuccess = false;
+        state.isError = true; 
         state.isErrorMessage = action.payload || "login failed"
       })
 
@@ -147,10 +148,16 @@ export const loginUser = createAsyncThunk(
   "LOGIN/USER",
   async (user) => {
     try {
-      const response = await axios.post("https://node-js-wse4.onrender.com/user/login", user);
+      const response = await axios.post("https://node-js-wse4.onrender.com/user/login", user)
+      toast.success("Login sucessfully", {
+        position: "top-right",
+      });
       // console.log(response.data.data, "login response")
       return response.data.data
     } catch (error) {
+      toast.error("Invalid User", {
+        position: "top-right"
+      });
       // console.log(error)
       return (error.response.data.message, "login failed")
     }
@@ -162,10 +169,16 @@ export const registerUser = createAsyncThunk(
   "REGISTER/USER",
   async (user) => {
     try {
-      const response = await axios.post("https://node-js-wse4.onrender.com/user", user);
+      const response = await axios.post("https://node-js-wse4.onrender.com/user", user)
+      toast.success("Register user successfully", {
+        position: "top-right",
+      });
       return response.data.data
       // console.log(response)
     } catch (error) {
+      toast.error("Failed", {
+        position: "top-right"
+      });
       // console.log(error)
       return (error.response.data.message, "registration failed")
     }
@@ -177,10 +190,16 @@ export const verifyEmail = createAsyncThunk(
   async (verification) => {
     const { id, token } = verification
     try {
-      const response = await axios.get(`https://node-js-wse4.onrender.com/user/email/verification?token=${token}&userId=${id}`);
+      const response = await axios.get(`https://node-js-wse4.onrender.com/user/email/verification?token=${token}&userId=${id}`)
+      toast.success("Verify email successfully", {
+        position: "top-right",
+      });
       // console.log(response, "verification response")
       return response.data.data
     } catch (error) {
+      toast.error("Failed", {
+        position: "top-right"
+      });
       console.log("Email verification failed")
     }
   }
@@ -212,9 +231,15 @@ export const resetPassword = createAsyncThunk(
 
     try {
       const response = await axios.post(`https://node-js-wse4.onrender.com/user/reset-password`, reset)
+      toast.success("Password reset successfully", {
+        position: "top-right",
+      });
       // console.log(response)
       return response.data.message
     } catch {
+      toast.error("Failed", {
+        position: "top-right"
+      });
       console.log("Password reset failed")
     }
   }
@@ -225,9 +250,15 @@ export const googleLogin = createAsyncThunk(
   async (credential) => {
     try {
       const response = await axios.post("https://node-js-wse4.onrender.com/user/google-login", credential)
+      toast.success("Login user Successfully", {
+        position: "top-right",
+      });
       // console.log(response,"google login data")
       return response.data.data
     } catch (error) {
+      toast.error("Login Failed", {
+        position: "top-right"
+      });
       console.log(error)
     }
   }
