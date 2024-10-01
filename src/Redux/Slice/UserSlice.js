@@ -89,7 +89,7 @@ const userDataSlice = createSlice({
                 state.isLoading = false;
                 state.isSuccess = false
                 state.isError = true;
-                state.isErrorMessage = action.payload;
+                state.isErrorMessage = action.payload.data;
             })
     }
 })
@@ -107,7 +107,7 @@ export const getAllUser = createAsyncThunk(
                     "Authorization": "Bearer " + localStorage.getItem("token")
                 }
             });
-            // console.log(response.data.data, "user data")
+            // console.log(response, "user data")
             return response.data.data
         } catch (error) {
             console.log(error)
@@ -124,7 +124,7 @@ export const deleteUser = createAsyncThunk(
                     "Authorization": "Bearer " + localStorage.getItem("token")
                 }
             })
-            alert("user delete successfully")
+            // alert("user delete successfully")
             // console.log(response.data.message, "delete data")
             return response.data.message
         } catch (error) {
@@ -148,12 +148,14 @@ export const updateUser = createAsyncThunk(
             })
             toast.success("Update user successfully", {
                 position: "top-right",
+                autoClose:1000
             });
             // console.log(response, "update user successfully")
-            return response.data.data
+            return response.data
         } catch (error) {
             toast.error("Failed", {
-                position: "top-right"
+                position: "top-right",
+                autoClose:1000
             });
             console.log("failed to update", error)
         }

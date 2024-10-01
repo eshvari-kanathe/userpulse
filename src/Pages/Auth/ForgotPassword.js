@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Auth.css';
 import { useDispatch } from 'react-redux';
@@ -11,7 +11,7 @@ function ForgotPassword() {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(forgotPassword({ email }))
-    };
+    }
 
     return (
         <div className="forgot-container">

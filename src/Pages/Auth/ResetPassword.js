@@ -26,7 +26,7 @@ export default function ResetPassword() {
         dispatch(resetPassword(reset))
         setPassword("")
         setConfirmPassword("")
-        alert("reset password successfully")
+        // alert("reset password successfully")
     };
 
     return (

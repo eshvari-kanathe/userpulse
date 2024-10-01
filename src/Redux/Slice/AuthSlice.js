@@ -129,7 +129,7 @@ const loginSlice = createSlice({
         state.isSuccess = true;
         state.isError = false;
         state.loginData = action.payload;
-        state.token = action.payload.token;
+        state.token = action.payload?.token;
         localStorage.setItem("token", action.payload?.token);
 
       })
@@ -159,7 +159,8 @@ export const loginUser = createAsyncThunk(
       const errorMessage = error.response
       // console.log(errorMessage,"login failed , invalid user")
       toast.error("Invalid user", {
-        position: "top-right"
+        position: "top-right",
+        autoClose:1000
       });
       return Promise.reject(errorMessage);
     // it returns rejected promise with specific reason (errormessage)
@@ -203,7 +204,8 @@ export const verifyEmail = createAsyncThunk(
       return response.data.data
     } catch (error) {
       toast.error("Failed", {
-        position: "top-right"
+        position: "top-right",
+        autoClose:1000
       });
       console.log("Email verification failed")
     }
@@ -224,7 +226,8 @@ export const forgotPassword = createAsyncThunk(
       return response.data.message
     } catch {
       toast.error("Request failed. Please try again", {
-        position: "top-right"
+        position: "top-right",
+        autoClose:1000
       });
       console.log("Failed to send password reset email")
     }
@@ -245,7 +248,8 @@ export const resetPassword = createAsyncThunk(
       return response.data.message
     } catch {
       toast.error("Failed", {
-        position: "top-right"
+        position: "top-right",
+        autoClose:1000
       });
       console.log("Password reset failed")
     }
@@ -265,7 +269,8 @@ export const googleLogin = createAsyncThunk(
       return response.data.data
     } catch (error) {
       toast.error("Login Failed", {
-        position: "top-right"
+        position: "top-right",
+        autoClose:1000
       });
       console.log(error)
     }

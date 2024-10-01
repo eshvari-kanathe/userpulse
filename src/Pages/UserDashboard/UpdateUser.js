@@ -1,66 +1,116 @@
-
-import { useEffect, useState } from "react"
-import "./UserDashboard.css"
-import { updateUser } from "../../Redux/Slice/UserSlice";
+import React, { useEffect } from "react";
+import { useFormik } from "formik";
+import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getAllUser, updateUser } from "../../Redux/Slice/UserSlice";
 
-function UpdateUser() {
+const validationSchema = yup.object({
+    name: yup
+        .string("Enter your name")
+        .required("Name is required"),
+    email: yup
+        .string("Enter your email")
+        .required("Email is required")
+        .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, "Enter a valide email "),
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { edit } = useSelector((state) => state.user);
+    password: yup
+        .string("Enter your password")
+        .min(6, "Password should be of minimum 6 characters length")
+        .required("Password is required"),
+})
 
-    const [input, setInput] = useState({
-        name: "",
-        email: "",
-        password: ""
+export default function UpdatedUser() {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const { edit } = useSelector((state) => state.user)
+
+    const formik = useFormik({
+        initialValues: {
+            name: "",
+            email: "",
+            password: "",
+        },
+        validationSchema: validationSchema,
+        onSubmit: (values) => {
+            const updatedData = {
+                id: edit.userData.id,
+                name: values.name,
+                email: values.email,
+                password: values.password,
+            }
+
+            dispatch(updateUser(updatedData)).then((res) => {
+                if (res.payload?.message == "User updated successfully") {
+                    dispatch(getAllUser())
+                    navigate("/dashboard")
+                }
+            })
+        }
     })
 
-    const handleInput = (e) => {
-        const { name, value } = e.target
-        setInput({ ...input, [name]: value })
-    }
 
     useEffect(() => {
-        setInput({
-            name: edit.userData?.name,
-            email: edit.userData?.email,
-        })
-    }, [edit.isEdit])
-
-
-    const saveData = (e) => {
-        e.preventDefault()
-        const update = {
-            id: edit.userData.id,
-            email: input.email,
-            name: input.name,
-            password: input.password
+        if (edit.isEdit) {
+            formik.setValues({
+                name: edit.userData?.name,
+                email: edit.userData?.email,
+                password: "",
+            });
         }
-        dispatch(updateUser(update))
-        navigate("/dashboard")
-    }
+    }, [edit.isEdit, edit.userData, formik.setValues])
 
-    return <>
-        <h1 style={{display:"flex", justifyContent:"center",marginTop:40}}>Update User</h1>
-        <form className="centered-form" onSubmit={saveData}>
-            <div>
-                <label>Name</label>
-                <input type="text" name="name" value={input.name} onChange={handleInput} placeholder="Enter Name" />
-            </div>
-            <div>
-                <label>Email</label>
-                <input type="email" name="email" value={input.email} onChange={handleInput} placeholder="Enter Email" />
-            </div>
-            <div>
-                <label>Password</label>
-                <input type="password" name="password" value={input.password} onChange={handleInput} placeholder="Enter Password" />
-            </div>
-            <div>
-                <button>Update</button>
-            </div>
-        </form>
-    </>
+    return (
+        <div>
+            <h1 style={{ display: "flex", justifyContent: "center", marginTop: 40 }}>
+                Update User
+            </h1>
+            <form className="centered-form" onSubmit={formik.handleSubmit}>
+                <div>
+                    <label>Name</label>
+                    <input
+                        name="name"
+                        type="text"
+                        value={formik.values.name}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                    />
+                    {formik.touched.name && formik.errors.name && (
+                        <div style={{ color: "red" }}>{formik.errors.name}</div>
+                    )}
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input
+                        name="email"
+                        type="email"
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                    />
+                    {formik.touched.email && formik.errors.email && (
+                        <div style={{ color: "red" }}>{formik.errors.email}</div>
+                    )}
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input
+                        name="password"
+                        type="password"
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        placeholder="Enter new password"
+                    />
+                    {formik.touched.password && formik.errors.password && (
+                        <div style={{ color: "red" }}>{formik.errors.password}</div>
+                    )}
+                </div>
+                <div>
+                    <button type="submit">Update</button>
+                    <Link to="/dashboard"><button style={{ marginTop: 10 }} type="submit">Back</button></Link>
+                </div>
+            </form>
+        </div>
+    )
 }
-export default UpdateUser;

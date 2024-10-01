@@ -3,53 +3,59 @@
   background-color: #4e6086;
 } */
 .logout-button {
-    height: 50px;
-    width: 150px;
-    float: right;
-    border-radius: 20px;
-    background-color: #84addb;
-    font-weight: 700;
-  }
-  
-  .logout-button:hover {
-    background-color: rgb(238, 65, 21);
-  }
-  
-  .del-button{
-    height: 45px;
-    background-color: #84addb;
-    width: 110px;
-    color: black;
-    border-radius: 9px;
-    font-weight: 500;
-  
-  }
-  .del-button:hover{
-    /* background-color: #4d88cc; */
-    background-color: rgb(182, 76, 76);
-    font-weight: 700;
-  }
+  height: 50px;
+  width: 150px;
+  float: right;
+  border-radius: 20px;
+  background-color: #84addb;
+  font-weight: 700;
+}
 
-  .btn2{
-    height: 45px;
-    background-color: #84addb;
-    width: 110px;
-    color: black;
-    border-radius: 6px;
-    font-weight: 500;
-  
-  }
-  
-  .btn2:hover {
-    /* background-color: #4d88cc; */
-    background-color: rgb(136, 168, 72);
-    font-weight: 700;
-  }
-  /* //////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+.logout-button:hover {
+  background-color: rgb(238, 65, 21);
+}
 
-  /* updateuser css */
+.del-button {
+  height: 45px;
+  background-color: #84addb;
+  width: 110px;
+  color: black;
+  border-radius: 9px;
+  font-weight: 500;
 
- .centered-form {
+}
+
+.del-button:hover {
+  /* background-color: #4d88cc; */
+  background-color: rgb(182, 76, 76);
+  font-weight: 700;
+}
+
+.dialogBox {
+  opacity: 0.1;
+}
+
+.btn2 {
+  height: 45px;
+  background-color: #84addb;
+  width: 110px;
+  color: black;
+  border-radius: 6px;
+  font-weight: 500;
+
+}
+
+.btn2:hover {
+  /* background-color: #4d88cc; */
+  background-color: rgb(136, 168, 72);
+  font-weight: 700;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+/* updateuser css */
+
+.centered-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,7 +63,7 @@
   padding: 20px;
   height: 100%;
   margin-top: 90px;
-} 
+}
 
 .centered-form div {
   margin-bottom: 10px;
@@ -85,7 +91,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width:60%;
+  width: 60%;
   font-weight: 600;
 }
 

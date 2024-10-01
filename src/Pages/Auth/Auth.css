@@ -112,7 +112,7 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
+  min-height: 100vh;
   background-color: #94bbe9;
 }
 
@@ -228,7 +228,7 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 100vh;
   background-color: #94bbe9;
 }
 
@@ -293,7 +293,7 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 100vh;
   background-color: #94bbe9;
 }
 
