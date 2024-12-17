@@ -49,7 +49,6 @@ export default function UpdatedUser() {
         }
     })
 
-
     useEffect(() => {
         if (edit.isEdit) {
             formik.setValues({

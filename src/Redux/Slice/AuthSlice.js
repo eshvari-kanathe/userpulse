@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import { toast } from "react-toastify";
+import axiosInstance from "../../axiosInterceptors";
 
 const initialState = {
   loginData: {},
@@ -148,7 +148,7 @@ export const loginUser = createAsyncThunk(
   "LOGIN/USER",
   async (user) => {
     try {
-      const response = await axios.post("https://node-js-wse4.onrender.com/user/login", user)
+      const response = await axiosInstance.post("/user/login", user)
       toast.success("Login sucessfully", {
         position: "top-right",
         autoClose:1000
@@ -172,7 +172,7 @@ export const registerUser = createAsyncThunk(
   "REGISTER/USER",
   async (user) => {
     try {
-      const response = await axios.post("https://node-js-wse4.onrender.com/user", user)
+      const response = await axiosInstance.post("/user", user)
       toast.success("Register user successfully", {
         position: "top-right",
         autoClose:1000
@@ -195,7 +195,7 @@ export const verifyEmail = createAsyncThunk(
   async (verification) => {
     const { id, token } = verification
     try {
-      const response = await axios.get(`https://node-js-wse4.onrender.com/user/email/verification?token=${token}&userId=${id}`)
+      const response = await axiosInstance.get(`/user/email/verification?token=${token}&userId=${id}`)
       toast.success("Verify email successfully", {
         position: "top-right",
         autoClose:1000
@@ -217,7 +217,7 @@ export const forgotPassword = createAsyncThunk(
   "FORGOT/PASSWORD",
   async (email) => {
     try {
-      const response = await axios.post(`https://node-js-wse4.onrender.com/user/forgot-password`, email)
+      const response = await axiosInstance.post(`/user/forgot-password`, email)
       toast.success("Password reset link has been sent to your account", {
         position: "top-right",
         autoClose:1000
@@ -239,7 +239,7 @@ export const resetPassword = createAsyncThunk(
   async (reset) => {
 
     try {
-      const response = await axios.post(`https://node-js-wse4.onrender.com/user/reset-password`, reset)
+      const response = await axiosInstance.post(`/user/reset-password`, reset)
       toast.success("Password reset successfully", {
         position: "top-right",
         autoClose:1000
@@ -260,7 +260,7 @@ export const googleLogin = createAsyncThunk(
   "GOOGLE/LOGIN",
   async (credential) => {
     try {
-      const response = await axios.post("https://node-js-wse4.onrender.com/user/google-login", credential)
+      const response = await axiosInstance.post("/user/google-login", credential)
       toast.success("Login user Successfully", {
         position: "top-right",
         autoClose:1000

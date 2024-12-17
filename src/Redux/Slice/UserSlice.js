@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
+import axiosInstance from "../../axiosInterceptors";
 
 const initialState = {
     userList: [],
@@ -102,12 +103,8 @@ export const getAllUser = createAsyncThunk(
     "USER/GETALL",
     async () => {
         try {
-            const response = await axios.get("https://node-js-wse4.onrender.com/user?pageNumber=1&pageSize=100", {
-                "headers": {
-                    "Authorization": "Bearer " + localStorage.getItem("token")
-                }
-            });
-            // console.log(response, "user data")
+            const response = await axiosInstance.get("/user?pageNumber=1&pageSize=100");
+            console.log(response, "user data")
             return response.data.data
         } catch (error) {
             console.log(error)
@@ -119,11 +116,7 @@ export const deleteUser = createAsyncThunk(
     "USER/DELETE",
     async (id) => {
         try {
-            const response = await axios.delete(`https://node-js-wse4.onrender.com/user/${id}`, {
-                "headers": {
-                    "Authorization": "Bearer " + localStorage.getItem("token")
-                }
-            })
+            const response = await axiosInstance.delete(`/user/${id}`)
             // alert("user delete successfully")
             // console.log(response.data.message, "delete data")
             return response.data.message
@@ -139,12 +132,8 @@ export const updateUser = createAsyncThunk(
     async (update) => {
         const { id, name, email, password } = update
         try {
-            const response = await axios.put(`https://node-js-wse4.onrender.com/user/${id}`, {
+            const response = await axiosInstance.put(`/user/${id}`, {
                 name: name, email: email, password: password
-            }, {
-                "headers": {
-                    "Authorization": "Bearer " + localStorage.getItem("token")
-                }
             })
             toast.success("Update user successfully", {
                 position: "top-right",
