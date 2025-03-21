@@ -44,3 +44,24 @@
 //         </nav>
 //     </>
 // }
+
+// import React from "react";
+// import { Navigate } from "react-router-dom";
+
+// const Navbar = () => {
+//     // const showCategories=()=>{
+//     //     console.log("show categories")
+//     // }
+//     const showCategories = () => {
+//         Navigate('/ProductData');
+//       }
+//   return <div>
+//     <nav>
+//         <ul>
+//             <li onClick={()=>showCategories()}>Categories</li>
+//         </ul>
+//     </nav>
+//   </div>;
+// };
+
+// export default Navbar;

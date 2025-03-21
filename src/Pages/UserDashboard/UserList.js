@@ -56,16 +56,19 @@ export default function Dashboard() {
     setOpen(false)
     setSelectedUserId(null)
   }
+  const handleShowAll=()=>{
+    navigate("/ProductData")
+  }
 
-  // console.log(11111,"userlist data")
 
   return (
     <div className='user-container'>
       <h1 style={{ display: "flex", justifyContent: "center", margin: 20, color: "black" }}>ALL USERS</h1>
-
+      
       <button type="submit" onClick={handleLogOut} className="logout-button" >
         Log Out
       </button>
+      <button onClick={handleShowAll}  className='prod'>Show All Product</button>
 
       <table className='table'>
         <thead>

@@ -8,6 +8,7 @@ import UserList from "../Pages/UserDashboard/UserList";
 import UpdateUser from "../Pages/UserDashboard/UpdateUser";
 import ResetPassword from "../Pages/Auth/ResetPassword";
 import PageNotFound from "../Components/System/PageNotFound";
+import ProductData from "../Pages/Products/ProductData";
 
 const AppRoute = () => {
     const userToken = localStorage.getItem("token");
@@ -34,6 +35,7 @@ const AppRoute = () => {
 
                 <Route path="/dashboard" element={<PrivateRoutes Component={UserList} /> } />
                 <Route path="/form" element={<PrivateRoutes Component={UpdateUser} /> } />
+                <Route path="/productData" element={<PrivateRoutes Component={ProductData}/>}/>
 
 
                 <Route path="*" element={<PageNotFound />} />

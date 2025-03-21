@@ -99,3 +99,14 @@
   /* background-color: #0056b3; */
   background-color: #3d8540;
 }
+
+.prod{
+  background-color: #84addb;
+  height: 40px;
+  width: 150px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+.prod:hover{
+  background-color: #4483ca;
+}
