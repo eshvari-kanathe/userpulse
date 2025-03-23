@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosInstance from "../../axiosInterceptors";
+import { toast } from "react-toastify";
 const initialState={
     isLoading: false,
     isSuccess: false,
@@ -76,8 +77,12 @@ export const createCategory=createAsyncThunk(
     async(formData)=>{
         try{
             const response=await axiosInstance.post("/product",formData)
-            console.log(response,"created data")
-            // return response.data.data
+            // console.log(response,"created data") 
+            toast.success("Product created successfully", {
+              position: "top-right",
+              autoClose:1000  
+          });
+          return response.data.data
         }catch(error){
             console.log(error)
         }
