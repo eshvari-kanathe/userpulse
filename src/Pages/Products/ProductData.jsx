@@ -54,7 +54,7 @@ const ProductData = () => {
 
   useEffect(() => {
     dispatch(GetAllProduct());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="d-flex p-4">
